@@ -49,79 +49,68 @@ else:
     print("Goodbye")
 
 #4
-day = int(input("Input day of birth: "))
-month = int(input("Input month of birth (number): "))
+def get_zodiac_sign(day, month):
 
-if month == [4,6,9,11] and day > 30:
-    print("error")
-elif month == [1,3,5,7,8,10,12] and day > 31:
-    print("error")
-elif month == [2] and day > 29:
-    priint("error")
-elif month > 12:
-    print("error")
-else:
- if month == 'december':
-    if day < 22:
-      print("Sagittarius")
+    if (month == 3 and day >= 21) or (month == 4 and day <= 19):
+        return "Aries"
+    elif (month == 4 and day >= 20) or (month == 5 and day <= 20):
+        return "Taurus"
+    elif (month == 5 and day >= 21) or (month == 6 and day <= 20):
+        return "Gemini"
+    elif (month == 6 and day >= 21) or (month == 7 and day <= 22):
+        return "Cancer"
+    elif (month == 7 and day >= 23) or (month == 8 and day <= 22):
+        return "Leo"
+    elif (month == 8 and day >= 23) or (month == 9 and day <= 22):
+        return "Virgo"
+    elif (month == 9 and day >= 23) or (month == 10 and day <= 22):
+        return "Libra"
+    elif (month == 10 and day >= 23) or (month == 11 and day <= 21):
+        return "Scorpio"
+    elif (month == 11 and day >= 22) or (month == 12 and day <= 21):
+        return "Sagittarius"
+    elif (month == 12 and day >= 22) or (month == 1 and day <= 19):
+        return "Capricorn"
+    elif (month == 1 and day >= 20) or (month == 2 and day <= 18):
+        return "Aquarius"
     else:
-      print("Capricorn")
- elif month == 'january':
-    if day < 20:
-      print("Capricorn")
-    else:
-      print("Aquarius")
- elif month == 'february':
-     if day < 19:
-      print("Aquarius")
-     else:
-      print("Pisces")
- elif month == 'march':
-     if day < 21:
-      print("Pisces")
-     else:
-      print("Aries")
- elif month == 'april':
-     if day < 20:
-      print("Aries")
-     else:
-      print("Taurus")
- elif month == 'may':
-     if day < 21:
-      print("Taurus")
-     else:
-      print("Gemini")
- elif month == 'june':
-     if day < 21:
-      print("Gemini")
-     else:
-      print("Cancer")
- elif month == 'july':
-     if day < 23:
-      print("Cancer")
-     else:
-      print("Leo")
- elif month == 'august':
-     if day < 23:
-      print("Leo")
-     else:
-      print("Virgo")
- elif month == 'september':
-     if day < 23:
-      print("Virgo")
-     else:
-      print("Libra")
- elif month == 'october':
-     if day < 23:
-      print("Libra")
-     else:
-      print("Scorpio")
- elif month == 'november':
-     if day < 22:
-      print("Scorpio")
-     else:
-      print("Sagittarius")
+        return "Pisces"
 
+def check_date(day, month):
+
+    if not isinstance(day, int) or not isinstance(month, int):
+        print("Error: day should be an integer")
+        return False
+    
+    if month < 1 or month > 12:
+        print("Error: month should be between 1 and 12")
+        return False
+    
+    days_in_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if (month == 2 and day > 29) or (day < 1 or day > days_in_month[month - 1]):
+        print(f"Error: there is no such day in this month")
+        return False
+    
+    return True
+
+def main():
+    print("Getting zodiac sign out of your birthday")
+    
+    try:
+        day = int(input("Day of birth: "))
+        month = int(input("Month of birth: "))
+    except ValueError:
+        print("Error: day and month should be integers.")
+        return
+    
+    if check_date(day, month):
+        zodiac_sign = get_zodiac_sign(day, month)
+        print(f"Your zodiac sign is: {zodiac_sign}")
+    else:
+        print("Retry with right data.")
+
+if __name__ == "__main__":
+    main()
 
 #5
 strinteger = input("Enter text or number: ")
